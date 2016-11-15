@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+</head>
+ 
+<body>
+<div ng-app="userApp" ng-controller ="userController">
+    <table id="searchResults">
+    <tr><th>Name</th><th>Email</th></tr>
+    <tr ng-repeat="data in usersData">
+    <td>{{data.name}}</td>
+    <td>{{data.email}}</td>
+    </tr>
+    </table>
+ 
+</div>
+<script>
+var app = angular.module('userApp', []);
+app.controller('userController', function($scope, $http) {
+    $http.get("http://104.198.18.250/api/tableau/findUsersForMarketing")
+    .success(function(response) {$scope.usersData = response;});
+});
+</script>
+ 
+</body>
+</html>
+
+  
+  
